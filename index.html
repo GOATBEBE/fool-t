@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愚人節</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        #professor {
+            position: absolute;
+            width: 150px;
+            height: 180px;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        #message {
+            font-size: 24px;
+            color: red;
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>抓住教授吧！</h1>
+    <div id="container">
+        <img id="professor" src="Dr.jpg" alt="教授">
+        <p id="message">成功補獲老師！愚人節快樂！😂</p>
+    </div>
+
+    <script>
+        const professor = document.getElementById("professor");
+        const message = document.getElementById("message");
+
+        professor.addEventListener("mouseover", move);
+
+        function move() {
+        const professorWidth = professor.offsetWidth;
+        const professorHeight = professor.offsetHeight;
+
+        let newX = Math.random() * (window.innerWidth - professorWidth);
+        let newY = Math.random() * (window.innerHeight - professorHeight);
+
+
+        professor.style.left = `${newX}px`;
+        professor.style.top = `${newY}px`;
+        }
+
+    function shakeProfessor() {
+        let i = 10;
+        let count = 0;
+        let interval = setInterval(() => {
+        let offsetX = (Math.random() - 0.5) * i;
+        let offsetY = (Math.random() - 0.5) * i;
+        let rotateAngle = (Math.random() - 0.5) * 20;
+        professor.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotateAngle}deg)`;
+        professor.style.filter = `hue-rotate(${count * 18}deg) drop-shadow(0px 0px 10px red)`;
+        count++;
+            if (count > 15) {
+                clearInterval(interval);
+                professor.style.transform = "none";
+                professor.style.filter = "none";
+            }
+        }, 150);
+
+        professor.style.filter = "hue-rotate(180deg)";
+    }
+
+        // professor.addEventListener("mouseenter", () => {
+        // for (let i = 0; i < 1; i++) { 
+        //     setTimeout(move, i * 100); 
+        //     }
+        // });
+        const sound = new Audio("sss.wav");
+        professor.addEventListener("mouseenter", move);
+        professor.addEventListener("click", function() {
+            sound.play();
+            shakeProfessor();
+            message.style.display = "block";
+            setTimeout(() => { message.style.display = "none"; }, 2500);
+        });
+    </script>
+
+</body>
+</html>
