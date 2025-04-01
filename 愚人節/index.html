@@ -9,8 +9,10 @@
             text-align: center;
             font-family: Arial, sans-serif;
             overflow: hidden;
-            background-color: #f0f0f0;
-        }
+            background: linear-gradient(rgba(70, 69, 69, 0.2), rgba(61, 59, 59, 0.2)), url('./class.jpg');
+            background-size: cover;
+            }
+
         #container {
             position: relative;
             width: 100vw;
@@ -18,8 +20,8 @@
         }
         #professor {
             position: absolute;
-            width: 150px;
-            height: 180px;
+            width: 130px;
+            height: 200px;
             transition: transform 0.2s;
             cursor: pointer;
         }
@@ -35,7 +37,7 @@
 
     <h1>抓住教授吧！</h1>
     <div id="container">
-        <img id="professor" src="Dr.jpg" alt="教授">
+        <img id="professor" src="2.jpg" alt="教授">
         <p id="message">成功補獲老師！愚人節快樂！😂</p>
     </div>
 
@@ -77,11 +79,11 @@
         professor.style.filter = "hue-rotate(180deg)";
     }
 
-        // professor.addEventListener("mouseenter", () => {
+        professor.addEventListener("mouseenter", () => {
         // for (let i = 0; i < 1; i++) { 
         //     setTimeout(move, i * 100); 
         //     }
-        // });
+        });
         const sound = new Audio("sss.wav");
         professor.addEventListener("mouseenter", move);
         professor.addEventListener("click", function() {
